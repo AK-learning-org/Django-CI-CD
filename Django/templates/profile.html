@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="max-width: 600px; margin: 0 auto; text-align: center;">
+    <h2 style="margin-bottom: 30px;">Your Profile</h2>
+
+    <div style="margin-bottom: 30px;">
+        {% if profile and profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture"
+            style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 3px solid #00f260; box-shadow: 0 0 20px rgba(0, 242, 96, 0.3);">
+        {% else %}
+        <div
+            style="width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #00f260; border: 3px solid #00f260;">
+            {{ user.username|make_list|first|upper }}
+        </div>
+        {% endif %}
+    </div>
+
+    <div style="text-align: left; padding: 20px;">
+        <div style="margin-bottom: 20px;">
+            <label>Name</label>
+            <div style="font-size: 1.2rem; font-weight: bold;">
+                {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label>Email</label>
+            <div style="font-size: 1.2rem;">{{ user.email }}</div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label>Username</label>
+            <div style="font-size: 1.2rem; color: #888;">@{{ user.username }}</div>
+        </div>
+    </div>
+
+    <a href="{% url 'item-list' %}" class="btn" style="margin-top: 20px;">View My Items</a>
+</div>
+{% endblock %}

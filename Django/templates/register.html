@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="max-width: 500px; margin: 0 auto;">
+    <h2 style="text-align: center; margin-bottom: 30px;">Register</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Loop logic to add classes if needed, but CSS targets inputs by type -->
+        {% for field in form %}
+        <div style="margin-bottom: 20px;">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+            <small style="color: #888;">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+            <div style="color: #ff4757; font-size: 0.9em; margin-top: 5px;">{{ error }}</div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn" style="width: 100%;">Register</button>
+    </form>
+    <p style="text-align: center; margin-top: 20px; color: #888;">
+        Already have an account? <a href="{% url 'login' %}" style="color: #00f260;">Login</a>
+    </p>
+</div>
+{% endblock %}

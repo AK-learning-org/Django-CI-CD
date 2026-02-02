@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<header>
+    <h1>Delete Item?</h1>
+</header>
+<div class="card">
+    <p>Are you sure you want to delete "{{ object.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn" style="background: #ff4757;">Confirm Delete</button>
+        <a href="{% url 'item-list' %}" class="btn"
+            style="background: transparent; border: 1px solid white; margin-left: 10px;">Cancel</a>
+    </form>
+</div>
+{% endblock %}
