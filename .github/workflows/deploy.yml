@@ -34,7 +34,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
         script: |
-          sudo docker pull akhileshml/crud-app:latest
+          sudo docker pull akhileshmony/crud-app:latest
           sudo docker rm -f django1 || true
           sudo docker run -d \
             --name django1 \
