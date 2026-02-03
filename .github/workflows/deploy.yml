@@ -21,11 +21,11 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t akhileshml/crud-app:latest .
+        docker build -t akhileshmony/crud-app:v1.0.0 .
 
     - name: Push Docker image
       run: |
-        docker push akhileshml/crud-app:latest
+        docker push akhileshmony/crud-app:v1.0.0
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@v1.0.3
@@ -34,7 +34,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
         script: |
-          sudo docker pull akhileshmony/crud-app:latest
+          sudo docker pull akhileshmony/crud-app:v1.0.0
           sudo docker rm -f django1 || true
           sudo docker run -d \
             --name django1 \
