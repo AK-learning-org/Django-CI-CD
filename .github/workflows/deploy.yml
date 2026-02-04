@@ -40,3 +40,5 @@ jobs:
             --name django1 \
             -p 80:8000 \
             akhileshmony/crud-app:v1.0.3 .
+
+            
